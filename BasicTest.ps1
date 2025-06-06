@@ -1,13 +1,17 @@
-# Define the URL and the path for the shortcut
-$webUrl = "https://nevadacountyca.gov/3455/Library"
-$shortcutPath = "$env:USERPROFILE\Desktop\Nevada County Library.url"
+# Define shortcut name and target URL
+$shortcutName = "NevCo Library"
+$url = "https://nevadacountyca.gov/3455/Library"
 
-# Create the content of the .url file
+# Get path to user's desktop
+$desktopPath = [Environment]::GetFolderPath("Desktop")
+$shortcutPath = Join-Path $desktopPath "$shortcutName.url"
+
+# Create the shortcut content 
 $shortcutContent = @"
 [InternetShortcut]
-URL=$webUrl
+URL=$url
 "@
 
-# Save the content to the .url file
-$shortcutContent | Set-Content -Encoding ASCII -Path $shortcutPath
+# Write the shortcut to the desktop
+$shortcutContent | Set-Content -Path $shortcutPath -Encoding ASCII
 
