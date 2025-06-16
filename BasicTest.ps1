@@ -2,6 +2,10 @@
 $shortcutName = "NevCo Library"
 $url = "https://nevadacountyca.gov/3455/Library"
 
+# Define the path to the Public Desktop
+$desktopPath = "C:\Users\Public\Desktop"
+$shortcutPath = Join-Path $desktopPath "$shortcutName.url"
+
 # Define log file path
 $logPath = "C:\Logs\LibraryShortcut.log"
 if (!(Test-Path -Path (Split-Path $logPath))) {
@@ -19,18 +23,15 @@ function Log-Message {
 Log-Message "Script started."
 
 try {
-    # Get path to user's desktop
-    $desktopPath = "$env:USERPROFILE\Desktop"
-    $shortcutPath = Join-Path $desktopPath "$shortcutName.url"
-    Log-Message "Resolved desktop path: $desktopPath"
+    Log-Message "Using public desktop path: $desktopPath"
 
-    # Create the shortcut content 
+    # Create the shortcut content
     $shortcutContent = @"
 [InternetShortcut]
 URL=$url
 "@
 
-    # Write the shortcut to the desktop
+    # Write the shortcut to the public desktop
     $shortcutContent | Set-Content -Path $shortcutPath -Encoding ASCII
     Log-Message "Shortcut created at: $shortcutPath"
 
