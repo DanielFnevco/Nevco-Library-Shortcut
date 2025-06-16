@@ -20,7 +20,7 @@ Log-Message "Script started."
 
 try {
     # Get path to user's desktop
-    $desktopPath = [Environment]::GetFolderPath("Desktop")
+    $desktopPath = "$env:USERPROFILE\Desktop"
     $shortcutPath = Join-Path $desktopPath "$shortcutName.url"
     Log-Message "Resolved desktop path: $desktopPath"
 
