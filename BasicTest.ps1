@@ -1,5 +1,5 @@
 # Define shortcut name and target URL
-$shortcutName = "Madelyn Helling Library"
+$shortcutName = "Nevada County Library"
 $url = "https://nevadacountyca.gov/3455/Library"
 
 # Define the path to the Public Desktop
